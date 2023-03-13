@@ -2,20 +2,23 @@
 
 int main() {
     FILE *fp;
+    FILE *output;
     char c;
     int line_number = 1;
     fp = fopen(__FILE__, "r");
-    if (fp) {
-        printf("%02d ", line_number);
-        while ((c = getc(fp)) != EOF) {
-            putchar(c);
-            if (c == '\n') {
+    output = fopen("main2.txt", "w");
+    if (fp && output){
+        fprintf(output,"%02d ", line_number);
+        while ((c = getc(fp)) != EOF){
+            fputc(c, output);
+            if (c == '\n'){
                 line_number++;
-                printf("%02d ", line_number);
+                fprintf(output,"%02d ", line_number);
             }
         }
         fclose(fp);
+        fclose(output);
     }
-    printf("\n");
+    fprintf(output,"\n");
     return 0;
 }
