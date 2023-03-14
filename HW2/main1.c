@@ -5,8 +5,8 @@
 int cmpfunc (const void * a, const void * b) {
    return ( *(int*)a - *(int*)b );
 }
-FILE* fp;
 
+FILE* fp;
 int num[7];
 
 void get_rand(){
@@ -37,19 +37,24 @@ int main(){
     scanf("%d", &n);
     printf("已為您購買的 %d 組樂透組合輸出至 lotto.txt\n", n);
     fp = fopen("lotto.txt", "w+");
-    fprintf(fp, " ======== lotto649 =========\n");
+    fprintf(fp, " ========= lotto649 =========\n");
     time_t now = time(NULL);
     struct tm *tm_info = localtime(&now);
     char date[100];
     strftime(date, 100, " = %a %b %01d %H:%M:%S %Y =", tm_info);
-    for(int i = 0 ; i < 11 ; i++){
-        fprintf(fp,"%c",date[i]);
-    }
-    for(int i = 12 ; i < 100 ; i++){
-        if(date[i]=='\0'){
-            break;
+    //date[11];
+    if((int)date[11] == 0){
+        for(int i = 0 ; i < 11 ; i++){
+            fprintf(fp,"%c",date[i]);
         }
-        fprintf(fp,"%c",date[i]);
+        for(int i = 12 ; i < 100 ; i++){
+            if(date[i]='\0'){
+                break;
+            }
+            fprintf(fp,"%c",date[i]);
+        }
+    }else{
+        fprintf(fp,"%s", date);
     }
     fprintf(fp,"\n");
     for(int i = 0 ; i < 5 ; i++){
@@ -67,6 +72,6 @@ int main(){
             fprintf(fp," [%d]: -- -- -- -- -- -- --\n", i + 1);
         }
     }
-    fprintf(fp," ======== csie@CGU =========\n");
+    fprintf(fp," ========= csie@CGU =========\n");
     return 0;
 }
