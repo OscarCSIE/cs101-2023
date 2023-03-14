@@ -59,7 +59,7 @@ int main(){
     fprintf(fp,"\n");
     for(int i = 0 ; i < 5 ; i++){
         if(i < n){
-            fprintf(fp," [%d]:  ", i + 1);
+            fprintf(fp," [%d]: ", i + 1);
             get_rand();
             num[7] = rand()%9 + 1;
             if((num[7] == num[0]) && num[0] != 1){
