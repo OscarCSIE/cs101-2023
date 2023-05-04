@@ -46,7 +46,7 @@ public:
     }
     //is the input actually an integer?
     bool isInputValid(char input) {
-        if (input < '0' || input > '9') {
+        if (input < '1' || input > '9') {
             return false;
         }
         else {
